@@ -4,14 +4,17 @@ import './components/transaction_form.dart';
 import './components/transaction_list.dart';
 import 'models/transaction.dart';
 
-main() => runApp(ExpensesApp());
+main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
+  const ExpensesApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData();
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
       theme: tema.copyWith(
         colorScheme: tema.colorScheme.copyWith(
@@ -39,24 +42,26 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de Luz',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
+  final List<Transaction> _transactions = [
+    // Transaction(
+    //   id: 't1',
+    //   title: 'Novo Tênis de Corrida',
+    //   value: 310.76,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Conta de Luz',
+    //   value: 211.30,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   _addTransaction(String title, double value) {
@@ -87,10 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Despesas Pessoais'),
+        title: const Text('Despesas Pessoais'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => _openTransactionFormModal(context),
           ),
         ],
@@ -99,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
+            SizedBox(
               width: double.infinity,
               child: Card(
                 color: Theme.of(context).colorScheme.primary,
